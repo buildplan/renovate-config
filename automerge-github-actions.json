@@ -13,9 +13,9 @@
     {
       "description": "Automerge highly trusted actions immediately",
       "matchManagers": ["github-actions"],
-      "matchPackagePrefixes": [
-        "bjw-s-labs/",
-        "actions/"
+      "matchPackageNames": [
+        "bjw-s-labs/{/,}**",
+        "actions/{/,}**"
       ],
       "matchUpdateTypes": ["minor", "patch", "digest"],
       "automerge": true,
@@ -25,3 +25,4 @@
     }
   ]
 }
+
