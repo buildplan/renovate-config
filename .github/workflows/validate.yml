@@ -11,7 +11,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - name: Validate Renovate JSON
-        uses: rinchsan/renovate-config-validator@v0.2.0
+
+      - name: Find all JSON files
+        id: files
+        run: |
+          set -euo pipefail
+          # Find all tracked files ending in .json
+          files=$(git ls-files | grep '\.json$')
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          {
+            echo "files<<$EOF"
+            echo "$files"
+            echo "$EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Validate configurations
+        uses: suzuki-shunsuke/github-action-renovate-config-validator@v2.0.0
         with:
-          pattern: '*.json'
+          config_file_path: ${{ steps.files.outputs.files }}
+          strict: "true"
