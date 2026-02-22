@@ -1,18 +1,15 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "description": "Default Renovate configuration for the buildplan organization",
+  "description": "Global baseline configuration for buildplan repos",
   "extends": [
-    "config:recommended"
+    "config:recommended",
+    "local>buildplan/renovate-config:group-all-non-major",
+    "local>buildplan/renovate-config:pr-labels",
+    "local>buildplan/renovate-config:commit-message",
+    "local>buildplan/renovate-config:automerge-docker-digest",
+    "local>buildplan/renovate-config:automerge-github-actions"
   ],
   "schedule": [
     "every weekend"
-  ],
-  "packageRules": [
-    {
-      "description": "Group all minor and patch updates together to reduce PR noise",
-      "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "all non-major dependencies",
-      "automerge": false
-    }
   ]
 }
