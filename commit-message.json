@@ -2,26 +2,42 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "packageRules": [
     {
-      "description": "Automerge general actions after 3 days",
-      "matchManagers": ["github-actions"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "automerge": true,
-      "automergeType": "branch",
-      "minimumReleaseAge": "3 days",
-      "ignoreTests": true
+      "matchUpdateTypes": ["major"],
+      "semanticCommitType": "feat",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessagePrefix": "{{semanticCommitType}}({{semanticCommitScope}})!:",
+      "commitMessageExtra": "( {{currentVersion}} ➔ {{newVersion}} )",
+      "commitMessageSuffix": ""
     },
     {
-      "description": "Automerge highly trusted actions immediately",
+      "matchUpdateTypes": ["minor"],
+      "semanticCommitType": "feat",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "( {{currentVersion}} ➔ {{newVersion}} )",
+      "commitMessageSuffix": ""
+    },
+    {
+      "matchUpdateTypes": ["patch"],
+      "semanticCommitType": "fix",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "( {{currentVersion}} ➔ {{newVersion}} )",
+      "commitMessageSuffix": ""
+    },
+    {
+      "matchUpdateTypes": ["digest"],
+      "semanticCommitType": "chore",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "( {{currentDigestShort}} ➔ {{newDigestShort}} )",
+      "commitMessageSuffix": ""
+    },
+    {
+      "matchDatasources": ["docker"],
+      "semanticCommitScope": "container"
+    },
+    {
       "matchManagers": ["github-actions"],
-      "matchPackagePrefixes": [
-        "bjw-s-labs/",
-        "actions/"
-      ],
-      "matchUpdateTypes": ["minor", "patch", "digest"],
-      "automerge": true,
-      "automergeType": "branch",
-      "minimumReleaseAge": "1 minute",
-      "ignoreTests": true
+      "semanticCommitType": "ci",
+      "semanticCommitScope": "github-action"
     }
   ]
 }
