@@ -26,7 +26,7 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Validate configurations
-        uses: suzuki-shunsuke/github-action-renovate-config-validator@v2.0.0
+        uses: suzuki-shunsuke/github-action-renovate-config-validator@v2.1.0
         with:
           config_file_path: ${{ steps.files.outputs.files }}
           strict: "true"
