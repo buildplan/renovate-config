@@ -8,5 +8,11 @@
     "local>buildplan/renovate-config:commit-message",
     "local>buildplan/renovate-config:automerge-docker-digest",
     "local>buildplan/renovate-config:automerge-github-actions"
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["npm"],
+      "rangeStrategy": "bump"
+    }
   ]
 }
